@@ -1,5 +1,3 @@
-This README serves as a quick start docuement. For more detailed documentation, please visit website: http://seawolf.io
-
 seawolf.io.service helps user of linux iot devices to get dynamic IP after power up without the needs of monitor, keyboard and mouse. I use it for all my raspberry pi boxes.
 
 Once seawolf.io.service is installed, when the device is powered up again, simply go to http://seawolf.io to get the private IP.
