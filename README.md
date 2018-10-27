@@ -13,4 +13,4 @@ The seawolf.io site saves the data for maxium 6 minutes. It can be accessed only
 Install seawolf.io.service
 --------------------------
 
-curl https://raw.githubusercontent.com/seawolfiot/seawolf.io/master/install | bash
+curl http://seawolf.io/install.txt | bash
