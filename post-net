@@ -1,0 +1,105 @@
+#!/bin/bash
+#####################################################
+#
+#  ./post-net
+#
+#  post interface name, status, mac address and ip,
+#
+#  exmaple: {"eth0": ["DOWN", "b827e7b639b8", ""],
+#  "wlan0": ["UP", "b827e7b36c25", "10.10.10.103"]} 
+#
+#  to
+#
+#  http://seawolf.io/dev/
+#
+#  The site saves the data for maxium 6 minutes.
+#  It can be accessed only from the same IP
+#  where the data is posted from. The access links:
+#
+#  http://seawolf.io       for human to read
+#  http://seawolf.io/api   for program to access
+#  http://seawolf.io/once  delete after being read
+#
+#  by Sam Wen @ 10/27/2018
+#
+#####################################################
+
+# wait until network links are up
+#
+while true; do
+  uplinks=$(ip -o link |  grep -v '^.: lo:' | awk -F ':| ' '{print $3, $11}' | grep -c 'UP')
+  if [ $uplinks -gt 0 ]; then
+    break
+  else
+    sleep 1
+  fi
+done
+
+# wait at least 5 minutes for all up links have ips
+#
+count=0
+while true; do
+  ips=$(ip -o address | grep -v '^.: \(lo\|.* inet6 \)' | wc -l)
+  if [ $ips -eq $uplinks ]; then
+    break
+  elif [ $ips -eq 0 ]; then
+    sleep 1
+  elif [ $count -gt 300 ]; then
+    break
+  else
+    ((count++))
+    sleep 1
+  fi
+done
+
+ips=($(ip -o address | grep -v '^.: \(lo\|.* inet6 \)' | awk -F ' |/' '{print $2, $7}'))
+
+# generate json string
+#
+ips_count=${#ips[*]}
+ips_row=$((ips_count/2))
+
+macs=($(ip -o link |  grep -v '^.: lo:' | awk -F ':| ' '{print $3, $11, $22$23$24$25$26$27}'))
+macs_count=${#macs[*]}
+macs_row=$((macs_count/3))
+
+json="{"
+count=0
+
+for ((i=0; i<$macs_row; i++)); do
+
+  start=$((i*3))
+  iface=${macs[$start]}
+
+  ip=""
+  for ((j=0; j<ips_row; j++)); do
+    ips_start=$((j*2))
+    ips_iface=${ips[$ips_start]}
+    ips_ip=${ips[$((ips_start+1))]}
+    if [ "$iface" = "$ips_iface" ]; then
+      ip=$ips_ip
+      break
+    fi
+  done
+
+  status=${macs[$((start+1))]}
+  mac=${macs[$((start+2))]}
+  line="\"$iface\": [\"$status\", \"$mac\", \"$ip\"]"
+
+  if [ $count -eq 0 ]; then
+    json="$json$line"
+  else
+    json="$json, $line"
+  fi
+
+  ((count++))
+
+done
+
+json="$json}"
+
+echo $json
+
+# post it
+#
+curl -s -d "$json" -H "Content-Type: application/json" -X POST http://seawolf.io/dev/

@@ -1,0 +1,76 @@
+#!/bin/bash
+################################
+#
+# install seawolf.io.service
+#
+# By Sam Wen @ 10/27/2018
+#
+################################
+
+FILE='seawolf.io.service.zip'
+DOWNLOAD_URL="https://raw.githubusercontent.com/seawolfiot/seawolf.io/master/download/$FILE"
+
+if [ "$(id -u)" -ne 0 ] ; then
+  echo "This script must run under root."
+  exit 1
+fi
+
+CURL_BIN=$(which curl)
+if [ -z "$CURL_BIN" ]; then
+  echo "Unable to find curl. Please install curl."
+  exit 1 
+fi
+
+if [[ -f ./post-ip && -f ./post-net && -f ./seawolf.io.service ]]; then
+  DOWNLOADED=false
+else
+  DOWNLOADED=true
+fi
+
+if [ $DOWNLOADED == true ]; then
+
+  UNZIP_BIN=$(which unzip)
+  if [ -z "$UNZIP_BIN" ]; then
+    echo "Unable to find unzip. Please install unzip."
+    exit 1
+  fi
+
+  if [ -f "./$FILE" ]; then
+    rm -f "./$FILE"
+  fi
+
+  CURL_BIN -o $FILE $DOWNLOAD_URL
+
+  if [ ! -f "./$FILE" ]; then
+    echo "Failed to locate $FILE"
+    exit 1
+  fi
+
+  if [ -d ./seawolf.io ]; then
+    rm -rf seawolf.io
+  fi
+
+  $UNZIP_BIN ./$FILE -d ./seawolf.io
+
+  rm -f ./$FILE
+
+  cd ./seawolf.io
+
+fi
+
+/bin/cp post-* /usr/local/bin/
+/bin/cp seawolf.io.service /etc/systemd/system/
+
+if [ $DOWNLOADED == true ]; then
+  cd ..
+  rm -rf ./seawolf.io
+fi
+
+#systemctl daemon-reload
+systemctl start seawolf.io.service
+systemctl enable seawolf.io.service
+
+echo "Installation done!"
+echo ""
+echo "goto: http://seawolf.io to get your IPs"
+

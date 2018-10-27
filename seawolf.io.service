@@ -1,0 +1,14 @@
+[Unit]
+Description=seawolf.io service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/tmp
+ExecStart=/usr/local/bin/post-ip
+#ExecStart=/usr/local/bin/post-net
+
+[Install]
+WantedBy=multi-user.target
