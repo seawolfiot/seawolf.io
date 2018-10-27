@@ -7,8 +7,14 @@
 #
 ################################
 
-FILE='seawolf.io.service.zip'
-DOWNLOAD_URL="https://raw.githubusercontent.com/seawolfiot/seawolf.io/master/download/$FILE"
+SYSTEMCTL=$(which systemctl)
+if [ -z "$SYSTEMCTL" ]; then
+  echo "Unable to find systemctl. It controls the systemd system and service manager"
+  exit 1 
+fi
+
+FILE='master.zip'
+DOWNLOAD_URL="https://github.com/seawolfiot/seawolf.io/archive/$FILE"
 
 if [ "$(id -u)" -ne 0 ] ; then
   echo "This script must run under root."
