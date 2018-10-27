@@ -7,6 +7,8 @@
 #
 ################################
 
+set -e
+
 SYSTEMCTL=$(which systemctl)
 if [ -z "$SYSTEMCTL" ]; then
   echo "Unable to find systemctl. It controls the systemd system and service manager"
@@ -14,7 +16,7 @@ if [ -z "$SYSTEMCTL" ]; then
 fi
 
 FILE='master.zip'
-DOWNLOAD_URL="https://github.com/seawolfiot/seawolf.io/archive/$FILE"
+DOWNLOAD_URL="https://codeload.github.com/seawolfiot/seawolf.io/zip/master"
 
 if [ "$(id -u)" -ne 0 ] ; then
   echo "This script must run under root."
@@ -45,22 +47,22 @@ if [ $DOWNLOADED == true ]; then
     rm -f "./$FILE"
   fi
 
-  CURL_BIN -o $FILE $DOWNLOAD_URL
+  $CURL_BIN -o $FILE $DOWNLOAD_URL
 
   if [ ! -f "./$FILE" ]; then
     echo "Failed to locate $FILE"
     exit 1
   fi
 
-  if [ -d ./seawolf.io ]; then
-    rm -rf seawolf.io
+  if [ -d ./seawolf.io-master ]; then
+    rm -rf seawolf.io-master
   fi
 
-  $UNZIP_BIN ./$FILE -d ./seawolf.io
+  $UNZIP_BIN ./$FILE
 
   rm -f ./$FILE
 
-  cd ./seawolf.io
+  cd ./seawolf.io-master
 
 fi
 
@@ -69,14 +71,13 @@ fi
 
 if [ $DOWNLOADED == true ]; then
   cd ..
-  rm -rf ./seawolf.io
+  rm -rf ./seawolf.io-master
 fi
 
-#systemctl daemon-reload
+systemctl daemon-reload
 systemctl start seawolf.io.service
 systemctl enable seawolf.io.service
 
 echo "Installation done!"
 echo ""
 echo "goto: http://seawolf.io to get your IPs"
-
