@@ -6,9 +6,9 @@ After installing seawolf.io.service, if the device is powered up again, simply g
 
 The seawolf.io site saves the data for maxium 6 minutes. It can be accessed only from the same IP where the data is posted from. The access links:
 
-  http://seawolf.io       for human to read
-  http://seawolf.io/api   for program to access
-  http://seawolf.io/once  delete after being read
+- http://seawolf.io       for human to read
+- http://seawolf.io/api   for program to access
+- http://seawolf.io/once  delete after being read
 
 Install seawolf.io.service
 --------------------------
