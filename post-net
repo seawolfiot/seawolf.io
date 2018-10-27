@@ -63,8 +63,7 @@ macs=($(ip -o link |  grep -v '^.: lo:' | awk -F ':| ' '{print $3, $11, $22$23$2
 macs_count=${#macs[*]}
 macs_row=$((macs_count/3))
 
-json="{"
-count=0
+json="{\"hostname\": \"$(hostname)\""
 
 for ((i=0; i<$macs_row; i++)); do
 
@@ -85,15 +84,7 @@ for ((i=0; i<$macs_row; i++)); do
   status=${macs[$((start+1))]}
   mac=${macs[$((start+2))]}
   line="\"$iface\": [\"$status\", \"$mac\", \"$ip\"]"
-
-  if [ $count -eq 0 ]; then
-    json="$json$line"
-  else
-    json="$json, $line"
-  fi
-
-  ((count++))
-
+  json="$json, $line"
 done
 
 json="$json}"

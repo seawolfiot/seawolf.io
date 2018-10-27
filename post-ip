@@ -55,8 +55,7 @@ ips=($(ip -o address | grep -v '^.: \(lo\|.* inet6 \)' | awk -F ' |/' '{print $2
 ips_count=${#ips[*]}
 ips_row=$((ips_count/2))
 
-json="{"
-count=0
+json="{\"hostname\": \"$(hostname)\""
 
 for ((i=0; i<$ips_row; i++));
 do
@@ -65,13 +64,7 @@ do
   ip=${ips[$((start+1))]}
 
   line="\"$iface\": \"$ip\""
-  if [ $count -eq 0 ]; then
-    json="$json$line"
-  else
-    json="$json, $line"
-  fi
-
-  ((count++))
+  json="$json, $line"
 done
 
 json="$json}"
