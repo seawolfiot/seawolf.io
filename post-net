@@ -17,8 +17,8 @@
 #  where the data is posted from. The access links:
 #
 #  http://seawolf.io       for human to read
-#  http://seawolf.io/api   for program to access
-#  http://seawolf.io/once  delete after being read
+#  http://seawolf.io/get   for program to access
+#  http://seawolf.io/get/once  delete after being read
 #
 #  by Sam Wen @ 10/27/2018
 #
