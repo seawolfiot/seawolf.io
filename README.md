@@ -4,7 +4,7 @@ Once seawolf.io.service is installed, when the device is powered up again, simpl
 
 For example: {"hostname": "sam-pi", "wlan0": "10.10.10.103"}
 
-The seawolf.io site saves the data for maxium 6 minutes. It can be accessed only from the same IP where the data is posted from. The access links:
+The seawolf.io site keeps the data for maxium 10 minutes. It can be accessed only from the same IP where the data is posted from. The access links:
 
 - http://seawolf.io       for human to read
 - http://seawolf.io/get   for program to access
