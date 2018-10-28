@@ -1,6 +1,6 @@
 seawolf.io is a service provided by Seawolf Technologies Inc. It is free and open source. It helps users of linux powered devices to get dynamic IP after power up without the needs of monitor, keyboard and mouse. I use it for all my raspberry pi boxes.
 
-Once seawolf.io.service is installed, when the device is powered up again, simply go to http://seawolf.io to get the private IP.
+Once seawolf.io.service is installed, whenever the device is powered up again, simply go to http://seawolf.io to get the private IP.
 
 For example: {"hostname": "sam-pi", "wlan0": "10.10.10.103"}
 
@@ -13,4 +13,4 @@ The seawolf.io site keeps the data for maxium 10 minutes. It can be accessed onl
 Install seawolf.io.service
 --------------------------
 
-curl http://seawolf.io/install | bash
+curl -s http://seawolf.io/install | bash
