@@ -16,12 +16,9 @@ fi
 
 SYSTEMCTL=$(which systemctl)
 if [ -z "$SYSTEMCTL" ]; then
-  echo "Unable to find systemctl. It controls the systemd system and service manager"
+  echo "Unable to find systemctl."
   exit 1 
 fi
-
-FILE='master.zip'
-DOWNLOAD_URL="https://codeload.github.com/seawolfiot/seawolf.io/zip/master"
 
 CURL_BIN=$(which curl)
 if [ -z "$CURL_BIN" ]; then
@@ -30,18 +27,21 @@ if [ -z "$CURL_BIN" ]; then
 fi
 
 if [[ -f ./post-ip && -f ./post-net && -f ./seawolf.io.service ]]; then
-  DOWNLOADED=false
-else
   DOWNLOADED=true
+else
+  DOWNLOADED=false
 fi
 
-if [ $DOWNLOADED == true ]; then
+if [ $DOWNLOADED == false ]; then
 
   UNZIP_BIN=$(which unzip)
   if [ -z "$UNZIP_BIN" ]; then
     echo "Unable to find unzip. Please install unzip."
     exit 1
   fi
+
+  FILE='master.zip'
+  DOWNLOAD_URL="https://codeload.github.com/seawolfiot/seawolf.io/zip/master"
 
   if [ -f "./$FILE" ]; then
     rm -f "./$FILE"
@@ -69,7 +69,7 @@ fi
 /bin/cp post-* /usr/local/bin/
 /bin/cp seawolf.io.service /etc/systemd/system/
 
-if [ $DOWNLOADED == true ]; then
+if [ $DOWNLOADED == false ]; then
   cd ..
   rm -rf ./seawolf.io-master
 fi
