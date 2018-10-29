@@ -14,3 +14,7 @@ Install seawolf.io.service
 --------------------------
 
 curl -s http://seawolf.io/install | bash
+
+OR use github directly
+
+curl -s https://raw.githubusercontent.com/seawolfiot/seawolf.io/master/install | bash
