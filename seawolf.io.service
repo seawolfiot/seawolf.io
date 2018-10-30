@@ -6,7 +6,6 @@ After=network-online.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/tmp
 ExecStart=/usr/local/bin/post-ip
 #ExecStart=/usr/local/bin/post-net
 
