@@ -18,3 +18,8 @@ curl -s https://seawolf.io/install | bash
 OR use github directly
 
 curl -s https://raw.githubusercontent.com/seawolfiot/seawolf.io/master/install | bash
+
+Licensing
+---------
+
+<a href="https://opensource.org/licenses/MIT">MIT License</a>
