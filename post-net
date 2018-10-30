@@ -93,4 +93,4 @@ echo $json
 
 # post it
 #
-curl -s -d "$json" -H "Content-Type: application/json" -X POST http://seawolf.io/post
+curl -s -d "$json" -H "Content-Type: application/json" -X POST https://seawolf.io/post
