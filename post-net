@@ -3,22 +3,9 @@
 #
 #  ./post-net
 #
-#  post interface name, status, mac address and ip,
-#
-#  exmaple: {"eth0": ["DOWN", "b827e7b639b8", ""],
-#  "wlan0": ["UP", "b827e7b36c25", "10.10.10.103"]} 
-#
+#  post host name, uuid, nic name, status, mac address and ip
 #  to
-#
-#  http://seawolf.io/dev/
-#
-#  The site saves the data for maxium 6 minutes.
-#  It can be accessed only from the same IP
-#  where the data is posted from. The access links:
-#
-#  http://seawolf.io       for human to read
-#  http://seawolf.io/get   for program to access
-#  http://seawolf.io/get/once  delete after being read
+#  https://seawolf.io/post
 #
 #  by Sam Wen @ 10/27/2018
 #
