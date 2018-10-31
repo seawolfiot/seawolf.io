@@ -1,11 +1,10 @@
 #!/bin/bash
-#####################################################
+###############################################################
 #
 #  ./post-ip 
 #
-#  post network interface name and ip info, 
-#  for exmaple: {"wlan0": "10.10.10.103"}, to
-#  
+#  post hostname, nic name and ip info to
+#
 #  https://seawolf.io/post
 #
 #  SEAWOLF.IO keeps user posted data for maximum 10 minutes.
@@ -16,7 +15,7 @@
 #
 #  by Sam Wen @ 10/27/2018
 #
-#####################################################
+###############################################################
 
 # wait until network links are up
 #
