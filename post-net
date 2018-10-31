@@ -1,15 +1,20 @@
 #!/bin/bash
-#####################################################
+###############################################################
 #
 #  ./post-net
 #
 #  post host name, uuid, nic name, status, mac address and ip
-#  to
-#  https://seawolf.io/post
+#  to https://seawolf.io/post.
+#
+#  SEAWOLF.IO keeps user posted data for maximum 10 minutes.
+#  After 10 minutes, the data will be destroyed. Within the
+#  10 minutes, the posted data can be accessed only from the
+#  same IP where the data are posted. It is a free service 
+#  provided by Seawolf Technologies Inc.
 #
 #  by Sam Wen @ 10/27/2018
 #
-#####################################################
+###############################################################
 
 # wait until network links are up
 #
