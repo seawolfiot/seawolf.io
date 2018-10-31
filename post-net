@@ -63,7 +63,13 @@ macs=($(ip -o link |  grep -v '^.: lo:' | awk -F ':| ' '{print $3, $11, $22$23$2
 macs_count=${#macs[*]}
 macs_row=$((macs_count/3))
 
-json="{\"hostname\": \"$(hostname)\""
+if [ ! -f /etc/seawolf/.uuid ]; then
+  [ -d /etc/seawolf ] || mkdir -p /etc/seawolf/
+  uuid > /etc/seawolf/.uuid
+fi 
+uuid=$(cat /etc/seawolf/.uuid)
+
+json="{\"hostname\": \"$(hostname)\", \"uuid\": \"$uuid\""
 
 for ((i=0; i<$macs_row; i++)); do
 
