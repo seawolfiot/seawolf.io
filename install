@@ -26,7 +26,7 @@ if [ -z "$CURL_BIN" ]; then
   exit 1 
 fi
 
-if [[ -f ./post-ip && -f ./post-net && -f ./seawolf.io.service ]]; then
+if [[ -f ./post-ip && -f ./seawolf.io.service ]]; then
   DOWNLOADED=true
 else
   DOWNLOADED=false
@@ -66,7 +66,7 @@ if [ $DOWNLOADED == false ]; then
 
 fi
 
-/bin/cp post-* /usr/local/bin/
+/bin/cp post-ip /usr/local/bin/
 /bin/cp seawolf.io.service /etc/systemd/system/
 
 if [ $DOWNLOADED == false ]; then
@@ -80,4 +80,4 @@ systemctl enable seawolf.io.service
 
 echo "Installation done!"
 echo ""
-echo "goto: http://seawolf.io to get your IPs"
+echo "goto: http://seawolf.io/ip to get your IPs"
