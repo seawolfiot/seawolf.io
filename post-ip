@@ -5,7 +5,7 @@
 #
 #  post hostname, nic name and ip info to
 #
-#  https://seawolf.io/post
+#  https://seawolf.io/ip/post
 #
 #  SEAWOLF.IO keeps user posted data for maximum 10 minutes.
 #  After 10 minutes, the data will be destroyed. Within the
@@ -70,4 +70,4 @@ echo $json
 
 # post it
 #
-curl -s -d "$json" -H "Content-Type: application/json" -X POST https://seawolf.io/post
+curl -s -d "$json" -H "Content-Type: application/json" -X POST https://seawolf.io/ip/post
