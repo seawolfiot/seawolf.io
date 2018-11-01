@@ -1,4 +1,4 @@
-seawolf.io is a service provided by Seawolf Technologies Inc. It is free and open source. It helps users of linux powered devices to get dynamic IP after power up without the needs of monitor, keyboard and mouse.
+seawolf.io/ip is a service provided by Seawolf Technologies Inc. It is free and open source. It helps users of linux powered devices to get dynamic IP after power up without the needs of monitor, keyboard and mouse.
 
 Once seawolf.io.service is installed, whenever the device is powered up again, simply go to https://seawolf.io/ip to get the private IP.
 
