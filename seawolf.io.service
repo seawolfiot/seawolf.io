@@ -7,7 +7,6 @@ After=network-online.target
 Type=simple
 User=root
 ExecStart=/usr/local/bin/post-ip
-#ExecStart=/usr/local/bin/post-net
 
 [Install]
 WantedBy=multi-user.target
