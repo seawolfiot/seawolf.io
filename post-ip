@@ -28,7 +28,7 @@ while true; do
   fi
 done
  
-# wait at least 5 minutes for all up links have ips
+# wait at most 10 minutes for all up links have ips
 # 
 count=0
 while true; do 
@@ -37,7 +37,7 @@ while true; do
     break
   elif [ $ips -eq 0 ]; then
     sleep 1
-  elif [ $count -gt 300 ]; then
+  elif [ $count -gt 600 ]; then
     break
   else
     ((count++))

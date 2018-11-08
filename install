@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################
 #
-# install seawolf.io.service
+# install seawolf.ip.service
 #
 # By Sam Wen @ 10/27/2018
 #
@@ -26,7 +26,7 @@ if [ -z "$CURL_BIN" ]; then
   exit 1 
 fi
 
-if [[ -f ./post-ip && -f ./seawolf.io.service ]]; then
+if [[ -f ./post-ip && -f ./seawolf.ip.service ]]; then
   DOWNLOADED=true
 else
   DOWNLOADED=false
@@ -67,7 +67,7 @@ if [ $DOWNLOADED == false ]; then
 fi
 
 /bin/cp post-ip /usr/local/bin/
-/bin/cp seawolf.io.service /etc/systemd/system/
+/bin/cp seawolf.ip.service /etc/systemd/system/
 
 if [ $DOWNLOADED == false ]; then
   cd ..
@@ -75,8 +75,8 @@ if [ $DOWNLOADED == false ]; then
 fi
 
 systemctl daemon-reload
-systemctl start seawolf.io.service
-systemctl enable seawolf.io.service
+systemctl start seawolf.ip.service
+systemctl enable seawolf.ip.service
 
 echo "Installation done!"
 echo ""

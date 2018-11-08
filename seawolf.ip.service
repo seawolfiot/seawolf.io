@@ -1,5 +1,5 @@
 [Unit]
-Description=seawolf.io service
+Description=seawolf.io/ip service
 Wants=network-online.target
 After=network-online.target
 
